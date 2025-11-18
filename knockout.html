@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خروج مغلوب - FIFA 26</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h1>FIFA 26 TOURNAMENTS</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="league.html">نظام الدوري</a></li>
+        <li><a href="online.html">بطولة أونلاين</a></li>
+        <li><a href="knockout.html" class="active">خروج مغلوب</a></li>
+        <li><a href="admin.html">لوحة التحكم</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="tournament-detail">
+      <h1>بطولات خروج مغلوب (حضوري)</h1>
+
+      <div class="tournament-tabs">
+        <button class="tab-btn active" data-tab="info">المعلومات</button>
+        <button class="tab-btn" data-tab="bracket">قوس البطولة</button>
+      </div>
+
+      <div id="info-tab" class="tab-content active">
+        <div id="knockout-info" class="tournament-info">
+          <div class="loading">جاري تحميل البيانات...</div>
+        </div>
+      </div>
+
+      <div id="bracket-tab" class="tab-content">
+        <div id="bracket" class="tournament-bracket">
+          <div class="loading">جاري تحميل قوس البطولة...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 FIFA 26 Tournaments. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script type="module" src="js/knockout.js"></script>
+</body>
+</html>

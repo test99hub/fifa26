@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بطولة أونلاين - FIFA 26</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h1>FIFA 26 TOURNAMENTS</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="league.html">نظام الدوري</a></li>
+        <li><a href="online.html" class="active">بطولة أونلاين</a></li>
+        <li><a href="knockout.html">خروج مغلوب</a></li>
+        <li><a href="admin.html">لوحة التحكم</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="tournament-detail">
+      <h1>بطولات أونلاين (FUT)</h1>
+
+      <div class="tournament-tabs">
+        <button class="tab-btn active" data-tab="info">المعلومات</button>
+        <button class="tab-btn" data-tab="standings">الترتيب</button>
+        <button class="tab-btn" data-tab="matches">المباريات</button>
+      </div>
+
+      <div id="info-tab" class="tab-content active">
+        <div id="online-info" class="tournament-info">
+          <div class="loading">جاري تحميل البيانات...</div>
+        </div>
+      </div>
+
+      <div id="standings-tab" class="tab-content">
+        <div id="standings" class="standings-table">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>اللاعب</th>
+                <th>ل</th>
+                <th>ف</th>
+                <th>ت</th>
+                <th>خ</th>
+                <th>أ</th>
+                <th>ض</th>
+                <th>ف-ض</th>
+                <th>نقاط</th>
+              </tr>
+            </thead>
+            <tbody id="standings-body">
+              <tr><td colspan="10" class="loading">جاري تحميل الترتيب...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="matches-tab" class="tab-content">
+        <div id="matches" class="matches-list">
+          <div class="loading">جاري تحميل المباريات...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 FIFA 26 Tournaments. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script type="module" src="js/online.js"></script>
+</body>
+</html>

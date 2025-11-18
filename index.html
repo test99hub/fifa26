@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بطولات FIFA 26</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h1>FIFA 26 TOURNAMENTS</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">الرئيسية</a></li>
+        <li><a href="league.html">نظام الدوري</a></li>
+        <li><a href="online.html">بطولة أونلاين</a></li>
+        <li><a href="knockout.html">خروج مغلوب</a></li>
+        <li><a href="admin.html">لوحة التحكم</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="ads-banner" class="ads-banner">
+    <div class="ads-container">
+      <button class="ads-prev">❮</button>
+      <div id="ads-slide" class="ads-slide">
+        <div class="ad-item">جاري تحميل الإعلانات...</div>
+      </div>
+      <button class="ads-next">❯</button>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <h1>بطولات FIFA 26</h1>
+      <p>اختر البطولة المفضلة لديك والانضم الآن</p>
+    </section>
+
+    <section class="tournaments-section">
+      <div id="tournaments-list" class="tournaments-grid">
+        <div class="loading">جاري تحميل البطولات...</div>
+      </div>
+    </section>
+
+    <section class="registration-section">
+      <div class="registration-form-container">
+        <h2>نموذج التسجيل</h2>
+        <form id="registration-form" class="registration-form">
+          <div class="form-group">
+            <label for="tournament-select">اختر البطولة:</label>
+            <select id="tournament-select" required>
+              <option value="">اختر بطولة...</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="participant-name">الاسم:</label>
+            <input type="text" id="participant-name" required placeholder="أدخل اسمك">
+          </div>
+
+          <div class="form-group">
+            <label for="participant-email">البريد الإلكتروني:</label>
+            <input type="email" id="participant-email" required placeholder="أدخل بريدك الإلكتروني">
+          </div>
+
+          <div class="form-group">
+            <label for="participant-phone">رقم الهاتف:</label>
+            <input type="tel" id="participant-phone" required placeholder="أدخل رقم هاتفك">
+          </div>
+
+          <div class="form-group">
+            <label for="participant-platform">نوع المنصة (اختياري):</label>
+            <input type="text" id="participant-platform" placeholder="مثال: PS5, Xbox, PC">
+          </div>
+
+          <button type="submit" class="btn-submit">إرسال الطلب</button>
+        </form>
+
+        <div id="registration-message" class="message hidden"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>معلومات التواصل</h3>
+        <p id="footer-email">البريد:</p>
+        <p id="footer-phone">الهاتف: </p>
+        <p id="footer-address">العنوان: </p>
+      </div>
+      <div class="footer-section">
+        <h3>وسائل التواصل</h3>
+        <div id="social-media" class="social-media"></div>
+      </div>
+      <div class="footer-section">
+        <p>&copy; 2024 FIFA 26 Tournaments. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

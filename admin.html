@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم - FIFA 26</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h1>FIFA 26 TOURNAMENTS</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="league.html">نظام الدوري</a></li>
+        <li><a href="online.html">بطولة أونلاين</a></li>
+        <li><a href="knockout.html">خروج مغلوب</a></li>
+        <li><a href="admin.html" class="active">لوحة التحكم</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container admin-container">
+    <section class="admin-panel">
+      <h1>لوحة التحكم والإدارة</h1>
+
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" data-tab="participants">إدارة المشتركين</button>
+        <button class="admin-tab-btn" data-tab="results">إدارة النتائج</button>
+        <button class="admin-tab-btn" data-tab="tournaments">إدارة البطولات</button>
+        <button class="admin-tab-btn" data-tab="advertisements">إدارة الإعلانات</button>
+        <button class="admin-tab-btn" data-tab="settings">الإعدادات</button>
+      </div>
+
+      <!-- Participants Tab -->
+      <div id="participants-tab" class="admin-tab-content active">
+        <div class="admin-section">
+          <h2>إدارة المشتركين</h2>
+          <div class="filter-section">
+            <select id="filter-tournament">
+              <option value="">كل البطولات</option>
+            </select>
+            <select id="filter-status">
+              <option value="">الكل</option>
+              <option value="pending">قيد الانتظار</option>
+              <option value="approved">موافق عليه</option>
+              <option value="rejected">مرفوض</option>
+            </select>
+          </div>
+
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>الاسم</th>
+                <th>البريد</th>
+                <th>الهاتف</th>
+                <th>البطولة</th>
+                <th>الحالة</th>
+                <th>الإجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="participants-list">
+              <tr><td colspan="6" class="loading">جاري تحميل البيانات...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Results Tab -->
+      <div id="results-tab" class="admin-tab-content">
+        <div class="admin-section">
+          <h2>إدارة النتائج</h2>
+          <div class="filter-section">
+            <select id="filter-results-tournament">
+              <option value="">كل البطولات</option>
+            </select>
+          </div>
+
+          <div id="results-list" class="results-list">
+            <div class="loading">جاري تحميل النتائج...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tournaments Tab -->
+      <div id="tournaments-tab" class="admin-tab-content">
+        <div class="admin-section">
+          <h2>إدارة البطولات</h2>
+          <button class="btn-add" onclick="showAddTournament()">+ إضافة بطولة</button>
+
+          <div id="tournaments-list" class="tournaments-admin-list">
+            <div class="loading">جاري تحميل البطولات...</div>
+          </div>
+
+          <div id="add-tournament-modal" class="modal hidden">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h3>إضافة بطولة جديدة</h3>
+              <form id="add-tournament-form">
+                <div class="form-group">
+                  <label for="t-name">اسم البطولة:</label>
+                  <input type="text" id="t-name" required>
+                </div>
+                <div class="form-group">
+                  <label for="t-type">النوع:</label>
+                  <select id="t-type" required>
+                    <option value="league">دوري</option>
+                    <option value="online">أونلاين</option>
+                    <option value="knockout">خروج مغلوب</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="t-description">الوصف:</label>
+                  <textarea id="t-description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="t-max">الحد الأقصى للمشتركين:</label>
+                  <input type="number" id="t-max" value="32">
+                </div>
+                <button type="submit" class="btn-submit">إنشاء</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advertisements Tab -->
+      <div id="advertisements-tab" class="admin-tab-content">
+        <div class="admin-section">
+          <h2>إدارة الإعلانات</h2>
+          <button class="btn-add" onclick="showAddAd()">+ إضافة إعلان</button>
+
+          <div id="advertisements-list" class="ads-admin-list">
+            <div class="loading">جاري تحميل الإعلانات...</div>
+          </div>
+
+          <div id="add-ad-modal" class="modal hidden">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h3>إضافة إعلان جديد</h3>
+              <form id="add-ad-form">
+                <div class="form-group">
+                  <label for="ad-title">عنوان الإعلان:</label>
+                  <input type="text" id="ad-title" required>
+                </div>
+                <div class="form-group">
+                  <label for="ad-image">رابط الصورة:</label>
+                  <input type="url" id="ad-image">
+                </div>
+                <div class="form-group">
+                  <label for="ad-link">رابط الإعلان:</label>
+                  <input type="url" id="ad-link">
+                </div>
+                <button type="submit" class="btn-submit">إضافة</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Tab -->
+      <div id="settings-tab" class="admin-tab-content">
+        <div class="admin-section">
+          <h2>إعدادات الموقع</h2>
+          <form id="settings-form" class="settings-form">
+            <div class="form-group">
+              <label for="site-name">اسم الموقع:</label>
+              <input type="text" id="site-name" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">بريد التواصل:</label>
+              <input type="email" id="contact-email">
+            </div>
+            <div class="form-group">
+              <label for="contact-phone">هاتف التواصل:</label>
+              <input type="tel" id="contact-phone">
+            </div>
+            <div class="form-group">
+              <label for="contact-address">العنوان:</label>
+              <input type="text" id="contact-address">
+            </div>
+            <div class="form-group">
+              <label for="site-description">وصف الموقع:</label>
+              <textarea id="site-description"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">حفظ الإعدادات</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 FIFA 26 Tournaments. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
